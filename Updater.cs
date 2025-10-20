@@ -10,7 +10,7 @@ namespace BluePrintOne
 {
     public class Updater
     {
-        private const string GITHUB_API = "https://api.github.com/repos/buildonerobotics/blueprint-one/releases/latest";
+        private const string GITHUB_API = "https://api.github.com/repos/BuildOneRobotics/BluePrintOne/releases/latest";
         private const string CURRENT_VERSION = "1.0.0";
 
         public static async Task<bool> CheckForUpdates()
@@ -34,7 +34,10 @@ namespace BluePrintOne
                     }
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Update check failed: {ex.Message}", "Update Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
             return false;
         }
 
