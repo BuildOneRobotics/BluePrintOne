@@ -14,14 +14,14 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: 8.0.x
     
     - name: Publish
-      run: dotnet publish -c Release
+      run: dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true
     
     - name: Create Release
       uses: softprops/action-gh-release@v1
       with:
-        files: bin/Release/net6.0-windows/win-x64/publish/BluePrintOne.exe
+        files: bin/Release/net8.0-windows/win-x64/publish/BluePrintOne.exe
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

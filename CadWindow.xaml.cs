@@ -9,7 +9,7 @@ namespace BluePrintOne
     {
         private string currentTool = "Line";
         private Point startPoint;
-        private Shape currentShape;
+        private Shape? currentShape;
         private bool isDrawing = false;
 
         public CadWindow()

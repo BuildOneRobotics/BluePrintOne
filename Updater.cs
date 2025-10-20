@@ -29,7 +29,7 @@ namespace BluePrintOne
                     
                     if (result == MessageBoxResult.Yes && release.assets?.Length > 0)
                     {
-                        await DownloadAndInstall(release.assets[0].browser_download_url);
+                        await DownloadAndInstall(release.assets[0].browser_download_url!);
                         return true;
                     }
                 }
@@ -50,13 +50,13 @@ namespace BluePrintOne
 
         private class GitHubRelease
         {
-            public string tag_name { get; set; }
-            public Asset[] assets { get; set; }
+            public string? tag_name { get; set; }
+            public Asset[]? assets { get; set; }
         }
 
         private class Asset
         {
-            public string browser_download_url { get; set; }
+            public string? browser_download_url { get; set; }
         }
     }
 }
