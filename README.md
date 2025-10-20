@@ -2,11 +2,10 @@
 
 Planning and Design Application for Windows with CAD Design, Planning, and Project Management.
 
-## Building Installer
+## Building Release
 
-1. Install [Inno Setup](https://jrsoftware.org/isdl.php)
-2. Run `build-installer.exe`
-3. Installer will be in `installer/` folder
+1. Run `build-installer.exe`
+2. BluePrintOne.exe will be in `release/` folder
 
 ## Creating a Release
 

@@ -17,20 +17,11 @@ jobs:
         dotnet-version: 6.0.x
     
     - name: Publish
-      run: dotnet publish -c Release -r win-x64 --self-contained false
-    
-    - name: Download Inno Setup
-      run: |
-        Invoke-WebRequest -Uri "https://jrsoftware.org/download.php/is.exe" -OutFile "innosetup.exe"
-        Start-Process -FilePath "innosetup.exe" -ArgumentList "/VERYSILENT" -Wait
-    
-    - name: Build Installer
-      run: |
-        & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" Installer.iss
+      run: dotnet publish -c Release
     
     - name: Create Release
       uses: softprops/action-gh-release@v1
       with:
-        files: installer/BluePrintOne_Setup_*.exe
+        files: bin/Release/net6.0-windows/win-x64/publish/BluePrintOne.exe
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

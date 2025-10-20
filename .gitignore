@@ -1,6 +1,6 @@
 bin/
 obj/
-installer/
+release/
 *.user
 .vs/
 BuildInstaller.cs

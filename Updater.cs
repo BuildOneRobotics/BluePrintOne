@@ -40,11 +40,11 @@ namespace BluePrintOne
 
         private static async Task DownloadAndInstall(string url)
         {
-            var tempPath = Path.Combine(Path.GetTempPath(), "BluePrintOne_Setup.exe");
+            var tempPath = Path.Combine(Path.GetTempPath(), "BluePrintOne.exe");
             using var client = new HttpClient();
             var data = await client.GetByteArrayAsync(url);
             await File.WriteAllBytesAsync(tempPath, data);
-            Process.Start(tempPath);
+            Process.Start(new ProcessStartInfo { FileName = tempPath, UseShellExecute = true });
             Application.Current.Shutdown();
         }
 

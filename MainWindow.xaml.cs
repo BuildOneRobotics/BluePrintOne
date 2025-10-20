@@ -7,12 +7,12 @@ namespace BluePrintOne
         public MainWindow()
         {
             InitializeComponent();
-            _ = Updater.CheckForUpdates();
+            Loaded += async (s, e) => await Updater.CheckForUpdates();
         }
 
         private void CadDesign_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Opening CAD Design...", "BluePrintOne");
+            new CadWindow().Show();
         }
 
         private void Planning_Click(object sender, RoutedEventArgs e)
