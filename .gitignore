@@ -1,0 +1,7 @@
+bin/
+obj/
+installer/
+*.user
+.vs/
+BuildInstaller.cs
+BuildInstaller.csproj
