@@ -16,4 +16,4 @@ Planning and Design Application for Windows with CAD Design, Planning, and Proje
 
 ## Auto-Updates
 
-The app checks for updates on startup from: https://github.com/buildonerobotics/blueprint-one/releases
+The app checks for updates on startup from: https://github.com/BuildOneRobotics/BluePrintOne/releases
