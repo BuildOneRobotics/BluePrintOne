@@ -7,7 +7,7 @@ namespace BluePrintOne
         public MainWindow()
         {
             InitializeComponent();
-            Loaded += async (s, e) => await Updater.CheckForUpdates();
+
         }
 
         private void CadDesign_Click(object sender, RoutedEventArgs e)

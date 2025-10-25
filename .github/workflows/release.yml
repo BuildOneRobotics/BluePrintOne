@@ -19,12 +19,10 @@ jobs:
         dotnet-version: 8.0.x
     
     - name: Build
-      run: dotnet publish BluePrintOne.csproj -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true /p:EnableCompressionInSingleFile=true
-    
-    - name: List files
-      run: dir bin\Release\net8.0-windows\win-x64\publish
+      run: dotnet publish BluePrintOne.csproj -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true
     
     - name: Create Release
       uses: softprops/action-gh-release@v2
       with:
         files: bin/Release/net8.0-windows/win-x64/publish/BluePrintOne.exe
+        fail_on_unmatched_files: true
