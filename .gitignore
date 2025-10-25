@@ -3,5 +3,3 @@ obj/
 release/
 *.user
 .vs/
-BuildInstaller.cs
-BuildInstaller.csproj

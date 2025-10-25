@@ -4,7 +4,7 @@ Planning and Design Application for Windows with CAD Design, Planning, and Proje
 
 ## Building Release
 
-1. Run `build-installer.exe`
+1. Run `build-release.bat`
 2. BluePrintOne.exe will be in `release/` folder
 
 ## Creating a Release
