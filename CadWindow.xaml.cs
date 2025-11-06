@@ -1,8 +1,11 @@
+using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Windows.Controls;
+
 
 namespace BluePrintOne
 {
@@ -12,6 +15,7 @@ namespace BluePrintOne
         private Point startPoint;
         private Shape? currentShape;
         private bool isDrawing = false;
+        private string? currentFilePath = null;
 
         public CadWindow()
         {
@@ -22,6 +26,45 @@ namespace BluePrintOne
         private void Rectangle_Click(object sender, RoutedEventArgs e) => currentTool = "Rectangle";
         private void Circle_Click(object sender, RoutedEventArgs e) => currentTool = "Circle";
         private void Clear_Click(object sender, RoutedEventArgs e) => DrawCanvas.Children.Clear();
+        private void Undo_Click(object sender, RoutedEventArgs e) { if (DrawCanvas.Children.Count > 0) DrawCanvas.Children.RemoveAt(DrawCanvas.Children.Count - 1); }
+        private void New_Click(object sender, RoutedEventArgs e) { DrawCanvas.Children.Clear(); currentFilePath = null; }
+        private void Exit_Click(object sender, RoutedEventArgs e) => Close();
+        
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentFilePath == null) SaveAs_Click(sender, e);
+            else SaveToFile(currentFilePath);
+        }
+        
+        private void SaveAs_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new SaveFileDialog
+            {
+                Filter = "PNG Image|*.png|JPEG Image|*.jpg",
+                DefaultExt = "png",
+                FileName = $"Drawing_{DateTime.Now:yyyyMMdd_HHmmss}"
+            };
+            
+            if (dialog.ShowDialog() == true)
+            {
+                currentFilePath = dialog.FileName;
+                SaveToFile(currentFilePath);
+            }
+        }
+        
+        private void Open_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new OpenFileDialog
+            {
+                Filter = "PNG Image|*.png|JPEG Image|*.jpg"
+            };
+            
+            if (dialog.ShowDialog() == true)
+            {
+                currentFilePath = dialog.FileName;
+                MessageBox.Show("Open feature coming soon!", "BluePrintOne");
+            }
+        }
 
         private void Canvas_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -84,6 +127,22 @@ namespace BluePrintOne
         {
             isDrawing = false;
             currentShape = null;
+        }
+
+        private void SaveToFile(string filePath)
+        {
+            var renderBitmap = new RenderTargetBitmap((int)DrawCanvas.ActualWidth, (int)DrawCanvas.ActualHeight, 96, 96, PixelFormats.Pbgra32);
+            renderBitmap.Render(DrawCanvas);
+            
+            BitmapEncoder encoder = filePath.EndsWith(".jpg") ? new JpegBitmapEncoder() : new PngBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(renderBitmap));
+            
+            using (var file = File.Create(filePath))
+            {
+                encoder.Save(file);
+            }
+            
+            MessageBox.Show($"Saved to: {filePath}", "Saved Successfully", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

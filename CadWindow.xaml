@@ -19,20 +19,35 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
-        <Border Grid.Row="0" Background="#6B46C1">
+        <Menu Grid.Row="0" Background="#6B46C1" Foreground="White">
+            <MenuItem Header="File" Foreground="White">
+                <MenuItem Header="New" Click="New_Click"/>
+                <MenuItem Header="Open" Click="Open_Click"/>
+                <MenuItem Header="Save" Click="Save_Click"/>
+                <MenuItem Header="Save As" Click="SaveAs_Click"/>
+                <Separator/>
+                <MenuItem Header="Exit" Click="Exit_Click"/>
+            </MenuItem>
+            <MenuItem Header="Edit" Foreground="White">
+                <MenuItem Header="Undo" Click="Undo_Click"/>
+                <MenuItem Header="Clear" Click="Clear_Click"/>
+            </MenuItem>
+        </Menu>
+        
+        <Border Grid.Row="1" Background="#6B46C1">
             <StackPanel Orientation="Horizontal" Margin="15,10">
                 <Button Content="✏️ Line" Width="80" Margin="5" Click="Line_Click"/>
                 <Button Content="▭ Rectangle" Width="100" Margin="5" Click="Rectangle_Click"/>
                 <Button Content="⭕ Circle" Width="80" Margin="5" Click="Circle_Click"/>
-                <Button Content="🗑️ Clear" Width="80" Margin="5" Click="Clear_Click"/>
             </StackPanel>
         </Border>
         
-        <Border Grid.Row="1" Background="White" Margin="10" BorderBrush="#CCCCCC" BorderThickness="1">
+        <Border Grid.Row="2" Background="White" Margin="10" BorderBrush="#CCCCCC" BorderThickness="1">
             <Canvas x:Name="DrawCanvas" Background="White" 
                     MouseLeftButtonDown="Canvas_MouseDown" MouseMove="Canvas_MouseMove" MouseLeftButtonUp="Canvas_MouseUp"/>
         </Border>
