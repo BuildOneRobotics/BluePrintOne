@@ -29,6 +29,7 @@
                 <Button Content="▭ Rectangle" Width="100" Margin="5" Click="Rectangle_Click"/>
                 <Button Content="⭕ Circle" Width="80" Margin="5" Click="Circle_Click"/>
                 <Button Content="🗑️ Clear" Width="80" Margin="5" Click="Clear_Click"/>
+                <Button Content="💾 Save" Width="80" Margin="5" Click="Save_Click"/>
             </StackPanel>
         </Border>
         

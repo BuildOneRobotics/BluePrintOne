@@ -1,6 +1,9 @@
+using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace BluePrintOne
@@ -21,6 +24,7 @@ namespace BluePrintOne
         private void Rectangle_Click(object sender, RoutedEventArgs e) => currentTool = "Rectangle";
         private void Circle_Click(object sender, RoutedEventArgs e) => currentTool = "Circle";
         private void Clear_Click(object sender, RoutedEventArgs e) => DrawCanvas.Children.Clear();
+        private void Save_Click(object sender, RoutedEventArgs e) => SaveToCloud();
 
         private void Canvas_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -83,6 +87,31 @@ namespace BluePrintOne
         {
             isDrawing = false;
             currentShape = null;
+        }
+
+        private void SaveToCloud()
+        {
+            var oneDrivePath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\OneDrive";
+            var savePath = Directory.Exists(oneDrivePath) ? oneDrivePath : Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            savePath = Path.Combine(savePath, "BluePrintOne");
+            
+            if (!Directory.Exists(savePath)) Directory.CreateDirectory(savePath);
+            
+            var fileName = $"Drawing_{DateTime.Now:yyyyMMdd_HHmmss}.png";
+            var fullPath = Path.Combine(savePath, fileName);
+            
+            var renderBitmap = new RenderTargetBitmap((int)DrawCanvas.ActualWidth, (int)DrawCanvas.ActualHeight, 96, 96, PixelFormats.Pbgra32);
+            renderBitmap.Render(DrawCanvas);
+            
+            var encoder = new PngBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(renderBitmap));
+            
+            using (var file = File.Create(fullPath))
+            {
+                encoder.Save(file);
+            }
+            
+            MessageBox.Show($"Saved to: {fullPath}", "Saved Successfully", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }
