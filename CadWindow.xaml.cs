@@ -5,7 +5,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Microsoft.Win32;
+
 
 namespace BluePrintOne
 {
@@ -105,8 +105,8 @@ namespace BluePrintOne
                 var y = System.Math.Min(pos.Y, startPoint.Y);
                 var w = System.Math.Abs(pos.X - startPoint.X);
                 var h = System.Math.Abs(pos.Y - startPoint.Y);
-                Canvas.SetLeft(rect, x);
-                Canvas.SetTop(rect, y);
+                System.Windows.Controls.Canvas.SetLeft(rect, x);
+                System.Windows.Controls.Canvas.SetTop(rect, y);
                 rect.Width = w;
                 rect.Height = h;
             }
@@ -116,8 +116,8 @@ namespace BluePrintOne
                 var y = System.Math.Min(pos.Y, startPoint.Y);
                 var w = System.Math.Abs(pos.X - startPoint.X);
                 var h = System.Math.Abs(pos.Y - startPoint.Y);
-                Canvas.SetLeft(ellipse, x);
-                Canvas.SetTop(ellipse, y);
+                System.Windows.Controls.Canvas.SetLeft(ellipse, x);
+                System.Windows.Controls.Canvas.SetTop(ellipse, y);
                 ellipse.Width = w;
                 ellipse.Height = h;
             }
