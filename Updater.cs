@@ -11,7 +11,7 @@ namespace BluePrintOne
     public class Updater
     {
         private const string GITHUB_API = "https://api.github.com/repos/BuildOneRobotics/BluePrintOne/releases/latest";
-        private const string CURRENT_VERSION = "1.0.0";
+        private const string CURRENT_VERSION = "1.0.1";
 
         public static async Task<bool> CheckForUpdates()
         {
