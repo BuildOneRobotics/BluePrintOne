@@ -1,25 +1,30 @@
 # BluePrintOne
 
-Planning and Design Application for Windows with CAD Design, Planning, and Project Management.
+Native C++ Windows CAD Design Application
 
-## Building Windows Installer
+## Building
 
-1. Run `create-installer.bat`
-2. BluePrintOne.exe will be in `installer/` folder
-3. This is a portable app - no installation needed
+**With Visual Studio:**
+```
+build.bat
+```
 
-## Running the App
+**With CMake:**
+```
+mkdir build && cd build
+cmake ..
+cmake --build .
+```
 
-1. Double-click `BluePrintOne.exe`
-2. Or run `RUN.bat` to build and run
+## Features
 
-## Creating a Release
+- Native C++ Win32 application
+- CAD drawing tools: Line, Rectangle, Circle
+- File menu: New, Save, Save As, Exit
+- Edit menu: Undo, Clear
+- Purple drawing theme
+- Lightweight and fast
 
-1. Update version in `Installer.iss` and `Updater.cs`
-2. Commit and push changes
-3. Create and push a tag: `git tag v1.0.0 && git push origin v1.0.0`
-4. GitHub Actions will automatically build and publish the installer
+## Releases
 
-## Auto-Updates
-
-The app checks for updates on startup from: https://github.com/BuildOneRobotics/BluePrintOne/releases
+https://github.com/BuildOneRobotics/BluePrintOne/releases
