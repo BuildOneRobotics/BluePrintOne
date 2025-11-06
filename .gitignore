@@ -4,3 +4,4 @@ release/
 installer/
 *.user
 .vs/
+InstallerBuilder.cs
